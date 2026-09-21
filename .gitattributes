@@ -1,0 +1,2 @@
+LittleA/LittleAFFI.xcframework/ios-arm64/liblittlea.a filter=lfs diff=lfs merge=lfs -text
+LittleA/LittleAFFI.xcframework/ios-arm64-simulator/liblittlea.a filter=lfs diff=lfs merge=lfs -text

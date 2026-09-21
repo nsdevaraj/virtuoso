@@ -1,0 +1,554 @@
+<mx:Scene xmlns:mx="http://littlea.dev/2026/mxml" width="1600" height="900" fps="60" background="#F1F4F8" responsive="false">
+  <mx:Theme font="20" face="#FFFFFF" border="#E1E6EE" text="#243247" accent="#7770D8" selection="#EAE7FC"/>
+  <mx:Script src="piano.ls.ts"/>
+  <mx:Event name="fullscreen"/>
+  <mx:Event name="openLessonConverter"/>
+  <mx:Sound id="tick" src="assets/metronome.wav"/>
+  <mx:Sound id="p48" src="assets/piano-a4.wav"/>
+  <mx:Sound id="p49" src="assets/piano-a4.wav"/>
+  <mx:Sound id="p50" src="assets/piano-a4.wav"/>
+  <mx:Sound id="p51" src="assets/piano-a4.wav"/>
+  <mx:Sound id="p52" src="assets/piano-a4.wav"/>
+  <mx:Sound id="p53" src="assets/piano-a4.wav"/>
+  <mx:Sound id="p54" src="assets/piano-a4.wav"/>
+  <mx:Sound id="p55" src="assets/piano-a4.wav"/>
+  <mx:Sound id="p56" src="assets/piano-a4.wav"/>
+  <mx:Sound id="p57" src="assets/piano-a4.wav"/>
+  <mx:Sound id="p58" src="assets/piano-a4.wav"/>
+  <mx:Sound id="p59" src="assets/piano-a4.wav"/>
+  <mx:Sound id="p60" src="assets/piano-a4.wav"/>
+  <mx:Sound id="p61" src="assets/piano-a4.wav"/>
+  <mx:Sound id="p62" src="assets/piano-a4.wav"/>
+  <mx:Sound id="p63" src="assets/piano-a4.wav"/>
+  <mx:Sound id="p64" src="assets/piano-a4.wav"/>
+  <mx:Sound id="p65" src="assets/piano-a4.wav"/>
+  <mx:Sound id="p66" src="assets/piano-a4.wav"/>
+  <mx:Sound id="p67" src="assets/piano-a4.wav"/>
+  <mx:Sound id="p68" src="assets/piano-a4.wav"/>
+  <mx:Sound id="p69" src="assets/piano-a4.wav"/>
+  <mx:Sound id="p70" src="assets/piano-a4.wav"/>
+  <mx:Sound id="p71" src="assets/piano-a4.wav"/>
+  <mx:Sound id="p72" src="assets/piano-a4.wav"/>
+  <mx:Sound id="p73" src="assets/piano-a4.wav"/>
+  <mx:Sound id="p74" src="assets/piano-a4.wav"/>
+  <mx:Sound id="p75" src="assets/piano-a4.wav"/>
+  <mx:Sound id="p76" src="assets/piano-a4.wav"/>
+  <mx:Sound id="p77" src="assets/piano-a4.wav"/>
+  <mx:Sound id="p78" src="assets/piano-a4.wav"/>
+  <mx:Sound id="p79" src="assets/piano-a4.wav"/>
+  <mx:Sound id="p80" src="assets/piano-a4.wav"/>
+  <mx:Sound id="p81" src="assets/piano-a4.wav"/>
+  <mx:Sound id="p82" src="assets/piano-a4.wav"/>
+  <mx:Sound id="p83" src="assets/piano-a4.wav"/>
+  <mx:Sound id="p84" src="assets/piano-a4.wav"/>
+  <mx:Sound id="p85" src="assets/piano-a4.wav"/>
+  <mx:Sound id="p86" src="assets/piano-a4.wav"/>
+  <mx:Sound id="p87" src="assets/piano-a4.wav"/>
+  <mx:Sound id="p88" src="assets/piano-a4.wav"/>
+  <mx:Sound id="p89" src="assets/piano-a4.wav"/>
+  <mx:Sound id="o48" src="assets/organ-a4.wav"/><mx:Sound id="o49" src="assets/organ-a4.wav"/><mx:Sound id="o50" src="assets/organ-a4.wav"/><mx:Sound id="o51" src="assets/organ-a4.wav"/><mx:Sound id="o52" src="assets/organ-a4.wav"/><mx:Sound id="o53" src="assets/organ-a4.wav"/><mx:Sound id="o54" src="assets/organ-a4.wav"/><mx:Sound id="o55" src="assets/organ-a4.wav"/><mx:Sound id="o56" src="assets/organ-a4.wav"/><mx:Sound id="o57" src="assets/organ-a4.wav"/><mx:Sound id="o58" src="assets/organ-a4.wav"/><mx:Sound id="o59" src="assets/organ-a4.wav"/><mx:Sound id="o60" src="assets/organ-a4.wav"/><mx:Sound id="o61" src="assets/organ-a4.wav"/><mx:Sound id="o62" src="assets/organ-a4.wav"/><mx:Sound id="o63" src="assets/organ-a4.wav"/><mx:Sound id="o64" src="assets/organ-a4.wav"/><mx:Sound id="o65" src="assets/organ-a4.wav"/><mx:Sound id="o66" src="assets/organ-a4.wav"/><mx:Sound id="o67" src="assets/organ-a4.wav"/><mx:Sound id="o68" src="assets/organ-a4.wav"/><mx:Sound id="o69" src="assets/organ-a4.wav"/><mx:Sound id="o70" src="assets/organ-a4.wav"/><mx:Sound id="o71" src="assets/organ-a4.wav"/><mx:Sound id="o72" src="assets/organ-a4.wav"/><mx:Sound id="o73" src="assets/organ-a4.wav"/><mx:Sound id="o74" src="assets/organ-a4.wav"/><mx:Sound id="o75" src="assets/organ-a4.wav"/><mx:Sound id="o76" src="assets/organ-a4.wav"/><mx:Sound id="o77" src="assets/organ-a4.wav"/><mx:Sound id="o78" src="assets/organ-a4.wav"/><mx:Sound id="o79" src="assets/organ-a4.wav"/><mx:Sound id="o80" src="assets/organ-a4.wav"/><mx:Sound id="o81" src="assets/organ-a4.wav"/><mx:Sound id="o82" src="assets/organ-a4.wav"/><mx:Sound id="o83" src="assets/organ-a4.wav"/><mx:Sound id="o84" src="assets/organ-a4.wav"/><mx:Sound id="o85" src="assets/organ-a4.wav"/><mx:Sound id="o86" src="assets/organ-a4.wav"/><mx:Sound id="o87" src="assets/organ-a4.wav"/><mx:Sound id="o88" src="assets/organ-a4.wav"/><mx:Sound id="o89" src="assets/organ-a4.wav"/>
+  <mx:Sound id="s48" src="assets/synth-a4.wav"/><mx:Sound id="s49" src="assets/synth-a4.wav"/><mx:Sound id="s50" src="assets/synth-a4.wav"/><mx:Sound id="s51" src="assets/synth-a4.wav"/><mx:Sound id="s52" src="assets/synth-a4.wav"/><mx:Sound id="s53" src="assets/synth-a4.wav"/><mx:Sound id="s54" src="assets/synth-a4.wav"/><mx:Sound id="s55" src="assets/synth-a4.wav"/><mx:Sound id="s56" src="assets/synth-a4.wav"/><mx:Sound id="s57" src="assets/synth-a4.wav"/><mx:Sound id="s58" src="assets/synth-a4.wav"/><mx:Sound id="s59" src="assets/synth-a4.wav"/><mx:Sound id="s60" src="assets/synth-a4.wav"/><mx:Sound id="s61" src="assets/synth-a4.wav"/><mx:Sound id="s62" src="assets/synth-a4.wav"/><mx:Sound id="s63" src="assets/synth-a4.wav"/><mx:Sound id="s64" src="assets/synth-a4.wav"/><mx:Sound id="s65" src="assets/synth-a4.wav"/><mx:Sound id="s66" src="assets/synth-a4.wav"/><mx:Sound id="s67" src="assets/synth-a4.wav"/><mx:Sound id="s68" src="assets/synth-a4.wav"/><mx:Sound id="s69" src="assets/synth-a4.wav"/><mx:Sound id="s70" src="assets/synth-a4.wav"/><mx:Sound id="s71" src="assets/synth-a4.wav"/><mx:Sound id="s72" src="assets/synth-a4.wav"/><mx:Sound id="s73" src="assets/synth-a4.wav"/><mx:Sound id="s74" src="assets/synth-a4.wav"/><mx:Sound id="s75" src="assets/synth-a4.wav"/><mx:Sound id="s76" src="assets/synth-a4.wav"/><mx:Sound id="s77" src="assets/synth-a4.wav"/><mx:Sound id="s78" src="assets/synth-a4.wav"/><mx:Sound id="s79" src="assets/synth-a4.wav"/><mx:Sound id="s80" src="assets/synth-a4.wav"/><mx:Sound id="s81" src="assets/synth-a4.wav"/><mx:Sound id="s82" src="assets/synth-a4.wav"/><mx:Sound id="s83" src="assets/synth-a4.wav"/><mx:Sound id="s84" src="assets/synth-a4.wav"/><mx:Sound id="s85" src="assets/synth-a4.wav"/><mx:Sound id="s86" src="assets/synth-a4.wav"/><mx:Sound id="s87" src="assets/synth-a4.wav"/><mx:Sound id="s88" src="assets/synth-a4.wav"/><mx:Sound id="s89" src="assets/synth-a4.wav"/>
+  <mx:Sound id="dk" src="assets/drum-kick.wav"/><mx:Sound id="ds" src="assets/drum-snare.wav"/><mx:Sound id="dh" src="assets/drum-hat.wav"/>
+  <mx:Sound id="ek" src="assets/electronic-kick.wav"/><mx:Sound id="es" src="assets/electronic-snare.wav"/><mx:Sound id="eh" src="assets/electronic-hat.wav"/>
+
+  <mx:Component name="white-key">
+    <mx:Button id="tap" width="60.44" height="194" ariaLabel="Play white piano key" backgroundColor="#FFFFFF" borderColor="#DCE2E9"/>
+    <mx:Rect width="60.44" height="194" stroke="#D7DDE6" strokeWidth="1" radiusBottomLeft="6" radiusBottomRight="6">
+      <mx:Gradient x1="0" y1="0" x2="0" y2="1">
+        <mx:Stop offset="0" color="#F0F2F5"/><mx:Stop offset="0.10" color="#FFFFFF"/>
+        <mx:Stop offset="0.88" color="#FFFFFF"/><mx:Stop offset="1" color="#DDE2E9"/>
+      </mx:Gradient>
+    </mx:Rect>
+    <mx:Rect id="tint" width="60.44" height="194" fill="#EEAC18" alpha="0" radiusBottomLeft="6" radiusBottomRight="6"/>
+    <mx:Rect x="3" y="3" width="1" height="176" fill="#FFFFFF" alpha="0.45"/>
+    <mx:Label id="finger" x="26" y="113" height="24" text="" color="#FFFFFF" fontWeight="700"/>
+    <mx:Label id="name" x="22" y="149" height="24" text="C" color="#718096" fontWeight="600"/>
+    <mx:Label id="shortcut" x="26" y="172" height="20" text="" color="#A0ABB9"/>
+  </mx:Component>
+  <mx:Component name="black-key">
+    <mx:Button id="tap" width="38" height="126" ariaLabel="Play black piano key" backgroundColor="#172131" borderColor="#111827"/>
+    <mx:Rect width="38" height="126" stroke="#0F1726" strokeWidth="1" radiusBottomLeft="5" radiusBottomRight="5">
+      <mx:Gradient x1="0" y1="0" x2="0" y2="1">
+        <mx:Stop offset="0" color="#344052"/><mx:Stop offset="0.72" color="#1B2535"/><mx:Stop offset="1" color="#080E18"/>
+      </mx:Gradient>
+    </mx:Rect>
+    <mx:Rect id="tint" width="38" height="126" fill="#219879" alpha="0" radiusBottomLeft="5" radiusBottomRight="5"/>
+    <mx:Rect x="4" y="5" width="30" height="2" fill="#627087" alpha="0.6"/>
+    <mx:Rect x="4" y="118" width="30" height="3" fill="#4A5567" alpha="0.45"/>
+    <mx:Label id="finger" x="14" y="58" height="20" text="" color="#FFFFFF" fontWeight="700"/>
+    <mx:Label id="name" x="7" y="83" height="20" text="C#" color="#B9C4D3"/>
+    <mx:Label id="shortcut" x="14" y="105" height="20" text="" color="#90A0B3"/>
+  </mx:Component>
+  <mx:Component name="flow-note">
+    <mx:Rect id="body" width="160" height="34" fill="#EEAC18" radiusTopLeft="17" radiusTopRight="17" radiusBottomLeft="17" radiusBottomRight="17"/>
+    <mx:Label id="caption" x="12" y="3" height="28" text="E" color="#FFFFFF" fontWeight="700"/>
+    <mx:Sprite id="notation" visible="false">
+      <mx:Path d="M 3 17 C 3 7 30 2 31 13 C 32 24 5 29 3 17 Z" fill="#354158"/>
+      <mx:Path d="M 30 15 L 30 -35" fill="" stroke="#354158" strokeWidth="2"/>
+    </mx:Sprite>
+    <mx:Label id="sharp" x="-20" y="0" height="31" text="#" color="#354158" visible="false"/>
+    <mx:Path id="ledger" d="M -7 17 L 41 17" fill="" stroke="#8896A8" strokeWidth="1.5" visible="false"/>
+  </mx:Component>
+  <mx:Component name="library-card">
+    <mx:Button id="action" width="444" height="64" backgroundColor="#F6F7FB" borderColor="#E4E7F0" cornerRadius="12">
+      <mx:Rect id="accent" x="1" y="10" width="4" height="44" fill="#998ABD" radiusTopLeft="2" radiusTopRight="2" radiusBottomLeft="2" radiusBottomRight="2"/>
+      <mx:Label id="title" x="16" y="8" width="412" height="24" text="Lesson" color="#534C71" fontWeight="600"/>
+      <mx:Label id="detail" x="16" y="37" width="412" height="20" text="Choose a lesson" color="#8A96A9"/>
+    </mx:Button>
+  </mx:Component>
+
+  <mx:Layer name="Quiet practice room">
+    <mx:Rect y="96" width="1600" height="454">
+      <mx:Gradient x1="0" y1="0" x2="0" y2="1">
+        <mx:Stop offset="0" color="#EDF1F7"/><mx:Stop offset="0.50" color="#F8FAFC"/><mx:Stop offset="1" color="#E8EEF5"/>
+      </mx:Gradient>
+    </mx:Rect>
+    <mx:Path d="M 0 219 C 280 120 480 283 800 229 C 1110 180 1310 113 1600 190 L 1600 298 C 1260 207 1010 309 747 278 C 430 241 258 169 0 277 Z" fill="#FFFFFF" alpha="0.3"/>
+    <mx:Path d="M 0 414 C 310 509 496 416 774 443 C 1065 472 1340 342 1600 382 L 1600 550 L 0 550 Z" fill="#E2E9F2" alpha="0.24"/>
+    <mx:Rect x="280" y="222" width="5" height="5" fill="#FFFFFF" radiusTopLeft="3" radiusTopRight="3" radiusBottomLeft="3" radiusBottomRight="3"/>
+    <mx:Rect x="560" y="183" width="7" height="7" fill="#FFFFFF" radiusTopLeft="4" radiusTopRight="4" radiusBottomLeft="4" radiusBottomRight="4"/>
+    <mx:Rect x="685" y="253" width="4" height="4" fill="#FFFFFF"/>
+    <mx:Rect x="867" y="201" width="5" height="5" fill="#FFFFFF" radiusTopLeft="3" radiusTopRight="3" radiusBottomLeft="3" radiusBottomRight="3"/>
+    <mx:Rect x="1048" y="226" width="7" height="7" fill="#FFFFFF" radiusTopLeft="4" radiusTopRight="4" radiusBottomLeft="4" radiusBottomRight="4"/>
+    <mx:Rect x="1226" y="188" width="5" height="5" fill="#FFFFFF" radiusTopLeft="3" radiusTopRight="3" radiusBottomLeft="3" radiusBottomRight="3"/>
+    <mx:Rect x="1389" y="260" width="6" height="6" fill="#FFFFFF" radiusTopLeft="3" radiusTopRight="3" radiusBottomLeft="3" radiusBottomRight="3"/>
+    <mx:Rect x="402" y="441" width="5" height="5" fill="#FFFFFF" radiusTopLeft="3" radiusTopRight="3" radiusBottomLeft="3" radiusBottomRight="3"/>
+    <mx:Rect x="1104" y="462" width="5" height="5" fill="#FFFFFF" radiusTopLeft="3" radiusTopRight="3" radiusBottomLeft="3" radiusBottomRight="3"/>
+
+    <mx:Rect x="40" y="130" width="7" height="7" fill="#48AF8B" radiusTopLeft="4" radiusTopRight="4" radiusBottomLeft="4" radiusBottomRight="4"/>
+    <mx:Label id="practice-state" x="58" y="122" height="20" text="YOUR TURN TO PLAY" color="#748298" fontWeight="600"/>
+    <mx:Rect x="261" y="116" width="106" height="32" fill="#E5E1F4" radiusTopLeft="16" radiusTopRight="16" radiusBottomLeft="16" radiusBottomRight="16"/>
+    <mx:Label x="278" y="122" height="20" text="Right hand" color="#7D70AF" fontWeight="600"/>
+    <mx:Label id="measure" x="1206" y="122" height="20" text="MEASURE 1 / 12" color="#7C8A9E"/>
+    <mx:Rect x="1436" y="122" width="1" height="20" fill="#CBD4DF"/>
+    <mx:Label id="key-signature" x="1460" y="122" height="20" text="A minor" color="#7C8A9E"/>
+    <mx:Label id="canvas-streak" x="38" y="172" height="64" text="1x" color="#A1ADBD" fontWeight="700"/>
+    <mx:Label x="120" y="183" height="20" text="FIND YOUR" color="#9BA7B7"/>
+    <mx:Label x="120" y="205" height="20" text="RHYTHM" color="#9BA7B7"/>
+    <mx:Rect x="42" y="239" width="61" height="6" fill="#D4DCE7" radiusTopLeft="3" radiusTopRight="3" radiusBottomLeft="3" radiusBottomRight="3"/>
+    <mx:Label id="view-description" x="676" y="203" height="20" text="SHEET + FLOW" color="#A5AFBF" fontWeight="600"/>
+    <mx:Label id="canvas-score" x="1425" y="165" width="145" height="67" text="0" color="#A7B2C2" fontWeight="600"/>
+    <mx:Label x="1425" y="232" height="20" text="POINTS EARNED" color="#9BA7B7"/>
+    <mx:Sprite id="staff">
+      <mx:Path d="M 156 304 H 1568 M 156 328 H 1568 M 156 352 H 1568 M 156 376 H 1568 M 156 400 H 1568" fill="" stroke="#A5B0C0" strokeWidth="1.6"/>
+      <mx:Path d="M 180 304 V 400 M 708 304 V 400 M 1236 304 V 400 M 1568 304 V 400" fill="" stroke="#ADB8C7" strokeWidth="2"/>
+      <mx:Path x="57" y="273" d="M 28 112 C 4 110 -2 90 12 71 C 27 51 48 37 43 15 C 40 -1 30 -3 27 14 C 21 42 33 84 41 121 C 46 146 22 155 16 139 C 11 127 27 121 31 134" fill="" stroke="#435269" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round"/>
+      <mx:Path x="57" y="273" d="M 23 98 C 9 84 25 68 40 75 C 60 83 54 111 32 112" fill="" stroke="#435269" strokeWidth="6" strokeLinecap="round"/>
+      <mx:Label id="time-top" x="132" y="328" height="35" text="3" color="#738096" fontWeight="600"/>
+      <mx:Label id="time-bottom" x="132" y="361" height="35" text="8" color="#738096" fontWeight="600"/>
+    </mx:Sprite>
+    <mx:Sprite id="waterfall-lanes" visible="false">
+      <mx:Duplicator count="26" stepX="61.44"><mx:Rect x="32" y="248" width="1" height="280" fill="#DDE5EF"/></mx:Duplicator>
+      <mx:Rect x="32" y="526" width="1536" height="2" fill="#61B896"/>
+      <mx:Label x="41" y="228" height="20" text="Let the notes come to you" color="#8998AA"/>
+    </mx:Sprite>
+    <mx:Instance component="flow-note" id="note0" x="192" y="335"/>
+    <mx:Instance component="flow-note" id="note1" x="368" y="299"/>
+    <mx:Instance component="flow-note" id="note2" x="544" y="311"/>
+    <mx:Instance component="flow-note" id="note3" x="720" y="299"/>
+    <mx:Instance component="flow-note" id="note4" x="896" y="311"/>
+    <mx:Instance component="flow-note" id="note5" x="1072" y="299"/>
+    <mx:Instance component="flow-note" id="note6" x="1248" y="335"/>
+    <mx:Instance component="flow-note" id="note7" x="1424" y="323"/>
+    <mx:Sprite id="staff-cursor">
+      <mx:Rect id="cursor-glow" x="356" y="285" width="26" height="157" fill="#4CB792" alpha="0.12"/>
+      <mx:Rect x="367" y="283" width="3" height="158" fill="#5AAF88"/>
+      <mx:Rect x="362" y="275" width="13" height="13" fill="#FFFFFF" stroke="#67B899" strokeWidth="2" radiusTopLeft="7" radiusTopRight="7" radiusBottomLeft="7" radiusBottomRight="7"/>
+      <mx:Path d="M 362 446 L 375 446 L 368.5 451 Z" fill="#5AAF88"/>
+    </mx:Sprite>
+    <mx:Sprite id="guidance" x="511" y="468">
+      <mx:Rect y="3" width="578" height="46" fill="#B6C1D0" alpha="0.2" radiusTopLeft="23" radiusTopRight="23" radiusBottomLeft="23" radiusBottomRight="23"/>
+      <mx:Rect width="578" height="46" fill="#253349" radiusTopLeft="23" radiusTopRight="23" radiusBottomLeft="23" radiusBottomRight="23"/>
+      <mx:Rect id="hint-note-bg" x="8" y="7" width="51" height="32" fill="#EEAC18" radiusTopLeft="16" radiusTopRight="16" radiusBottomLeft="16" radiusBottomRight="16"/>
+      <mx:Label id="hint-note" x="18" y="12" height="22" text="E5" color="#FFFFFF" fontWeight="700"/>
+      <mx:Label id="feedback" x="75" y="12" height="22" text="Play E5 with finger 5  /  key ;" color="#FFFFFF" fontWeight="500"/>
+    </mx:Sprite>
+    <mx:Label id="coach" x="637" y="523" height="20" text="No rush. The music waits for you." color="#8C98A9"/>
+    <mx:Label id="note-count" x="40" y="511" height="20" text="1 / 27 notes" color="#8A97A9"/>
+    <mx:Sprite id="demo-control" x="1220" y="499">
+      <mx:Button width="184" height="40" label="Auto play" ariaLabel="Start autoplay demo" backgroundColor="#E5E1F4" borderColor="#D5CDED" color="#6F609E" cornerRadius="12"/>
+      <mx:Path d="M 18 11 L 18 29 L 32 20 Z" fill="#8A78B5"/>
+    </mx:Sprite>
+    <mx:Sprite id="stop-demo-control" x="1220" y="499" visible="false">
+      <mx:Button width="184" height="40" label="Stop demo" ariaLabel="Stop autoplay demo and practice" backgroundColor="#D9D2ED" borderColor="#C7BDDF" color="#65538F" cornerRadius="12"/>
+      <mx:Rect x="18" y="13" width="14" height="14" fill="#8A78B5" radiusTopLeft="2" radiusTopRight="2" radiusBottomLeft="2" radiusBottomRight="2"/>
+    </mx:Sprite>
+    <mx:Sprite id="help-control" x="1420" y="507">
+      <mx:Button width="146" height="32" label="How to play" ariaLabel="How to play" backgroundColor="#E9EEF6" borderColor="#E9EEF6" color="#748399" cornerRadius="16"/>
+    </mx:Sprite>
+  </mx:Layer>
+
+  <mx:Layer name="Lesson navigation">
+    <mx:Rect width="1600" height="96" fill="#FFFFFF"/>
+    <mx:Rect y="95" width="1600" height="1" fill="#DDE3EC"/>
+    <mx:Sprite id="library-control" x="28" y="25">
+      <mx:Button width="43" height="43" ariaLabel="Open lesson library" backgroundColor="#F2F4F8" borderColor="#F2F4F8" cornerRadius="22"/>
+      <mx:Path d="M 26 13 L 17 21.5 L 26 30 M 17 21.5 L 31 21.5" fill="" stroke="#768398" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+    </mx:Sprite>
+    <mx:Label id="song-title" x="88" y="18" width="348" height="34" text="Fur Elise" color="#243247" fontWeight="700"/>
+    <mx:Label id="song-author" x="88" y="59" width="172" height="20" boxHeight="34" text="Ludwig van Beethoven" color="#8B96A8"/>
+    <mx:Rect x="275" y="61" width="161" height="28" fill="#E8F5EF" radiusTopLeft="14" radiusTopRight="14" radiusBottomLeft="14" radiusBottomRight="14"/>
+    <mx:Label id="difficulty" x="287" y="66" height="20" text="Beginner / Lv. 2" color="#50866E" fontWeight="600"/>
+
+    <mx:Rect x="461" y="25" width="501" height="46" fill="#F0F2F7" radiusTopLeft="12" radiusTopRight="12" radiusBottomLeft="12" radiusBottomRight="12"/>
+    <mx:Rect id="tab-active" x="466" y="30" width="155" height="36" fill="#FFFFFF" stroke="#E3E5EF" strokeWidth="1" radiusTopLeft="8" radiusTopRight="8" radiusBottomLeft="8" radiusBottomRight="8"/>
+    <mx:Sprite id="flow-control" x="466" y="29">
+      <mx:Button width="155" height="38" ariaLabel="Sheet and flow view" backgroundColor="#FFFFFF00" borderColor="#FFFFFF00" cornerRadius="8"/>
+      <mx:Path d="M 21 12 L 21 26 M 21 12 L 31 10 L 31 24 M 17 24 L 21 24 L 21 28 L 17 28 Z M 27 22 L 31 22 L 31 26 L 27 26 Z" fill="#8170C5" stroke="#8170C5" strokeWidth="1"/>
+      <mx:Label x="42" y="9" height="20" text="Sheet + Flow" color="#4C506A" fontWeight="600"/>
+    </mx:Sprite>
+    <mx:Sprite id="waterfall-control" x="639" y="29">
+      <mx:Button width="155" height="38" ariaLabel="Waterfall view" backgroundColor="#FFFFFF00" borderColor="#FFFFFF00" cornerRadius="8"/>
+      <mx:Path d="M 14 12 V 24 M 21 8 V 19 M 28 16 V 28" fill="" stroke="#919BAD" strokeWidth="2" strokeLinecap="round"/>
+      <mx:Label x="39" y="9" height="20" text="Waterfall" color="#788397" fontWeight="500"/>
+    </mx:Sprite>
+    <mx:Sprite id="sheet-control" x="801" y="29">
+      <mx:Button width="155" height="38" ariaLabel="Sheet music view" backgroundColor="#FFFFFF00" borderColor="#FFFFFF00" cornerRadius="8"/>
+      <mx:Path d="M 14 11 H 30 M 14 17 H 30 M 14 23 H 30 M 14 29 H 30" fill="" stroke="#919BAD" strokeWidth="1.5"/>
+      <mx:Label x="41" y="9" height="20" text="Sheet only" color="#788397" fontWeight="500"/>
+    </mx:Sprite>
+    <mx:Rect x="982" y="26" width="206" height="44" fill="#F7F8FB" stroke="#E6EAF0" strokeWidth="1" radiusTopLeft="11" radiusTopRight="11" radiusBottomLeft="11" radiusBottomRight="11"/>
+    <mx:Path d="M 1006 35 L 998 58 L 1015 58 Z M 1007 48 L 1013 38" fill="" stroke="#929CAF" strokeWidth="1.5" strokeLinejoin="round"/>
+    <mx:Label id="tempo" x="1026" y="38" height="21" text="84 BPM" color="#647086" fontWeight="600"/>
+    <mx:Rect x="1108" y="36" width="1" height="24" fill="#DDE3EC"/>
+    <mx:Button id="tempo-minus" x="1114" y="31" width="32" height="34" label="-" ariaLabel="Decrease tempo" backgroundColor="#F7F8FB" borderColor="#F7F8FB" cornerRadius="7"/>
+    <mx:Button id="tempo-plus" x="1151" y="31" width="32" height="34" label="+" ariaLabel="Increase tempo" backgroundColor="#F7F8FB" borderColor="#F7F8FB" cornerRadius="7"/>
+
+    <mx:Label id="streak" x="1213" y="29" height="22" text="1x STREAK" color="#D19B3A" fontWeight="700"/>
+    <mx:Rect x="1215" y="59" width="88" height="5" fill="#ECEFF4" radiusTopLeft="3" radiusTopRight="3" radiusBottomLeft="3" radiusBottomRight="3"/>
+    <mx:Rect id="streak-fill" x="1215" y="59" width="88" height="5" fill="#E1B454" radiusTopLeft="3" radiusTopRight="3" radiusBottomLeft="3" radiusBottomRight="3"/>
+    <mx:Rect x="1327" y="16" width="153" height="62" fill="#F2F1FB" stroke="#E7E4F5" strokeWidth="1" radiusTopLeft="14" radiusTopRight="14" radiusBottomLeft="14" radiusBottomRight="14"/>
+    <mx:Label x="1342" y="23" height="20" text="SCORE" color="#9B95BD" fontWeight="600"/>
+    <mx:Label id="score" x="1342" y="43" height="30" text="0" color="#4E496E" fontWeight="700"/>
+    <mx:Path id="star0" x="1414" y="48" d="M 6 0 L 8 4 L 12 5 L 9 8 L 10 12 L 6 10 L 2 12 L 3 8 L 0 5 L 4 4 Z" fill="#D5DEEA"/>
+    <mx:Path id="star1" x="1432" y="48" d="M 6 0 L 8 4 L 12 5 L 9 8 L 10 12 L 6 10 L 2 12 L 3 8 L 0 5 L 4 4 Z" fill="#D5DEEA"/>
+    <mx:Path id="star2" x="1450" y="48" d="M 6 0 L 8 4 L 12 5 L 9 8 L 10 12 L 6 10 L 2 12 L 3 8 L 0 5 L 4 4 Z" fill="#D5DEEA"/>
+    <mx:Sprite id="settings-control" x="1494" y="29">
+      <mx:Button width="40" height="40" ariaLabel="Practice settings" backgroundColor="#FFFFFF" borderColor="#FFFFFF" cornerRadius="9"/>
+      <mx:Path d="M 12 11 V 29 M 20 11 V 29 M 28 11 V 29 M 9 16 H 15 M 17 24 H 23 M 25 17 H 31" fill="" stroke="#7C8799" strokeWidth="1.8" strokeLinecap="round"/>
+    </mx:Sprite>
+    <mx:Sprite id="fullscreen-control" x="1543" y="29">
+      <mx:Button width="36" height="40" ariaLabel="Toggle full screen" backgroundColor="#FFFFFF" borderColor="#FFFFFF" cornerRadius="9"/>
+      <mx:Path d="M 9 17 V 11 H 15 M 23 11 H 29 V 17 M 29 23 V 29 H 23 M 15 29 H 9 V 23" fill="" stroke="#7C8799" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+    </mx:Sprite>
+  </mx:Layer>
+
+  <mx:Layer name="Grand piano">
+    <mx:Rect y="554" width="1600" height="251" fill="#243044"/>
+    <mx:Rect y="554" width="1600" height="1" fill="#354157"/>
+    <mx:Path d="M 36 570 H 54 V 586 H 36 Z M 42 570 V 580 M 48 570 V 580" fill="" stroke="#A7B3C5" strokeWidth="1.5"/>
+    <mx:Label x="65" y="565" height="25" text="virtuoso" color="#D5DCE8" fontWeight="700"/>
+    <mx:Rect x="173" y="570" width="1" height="17" fill="#465168"/>
+    <mx:Sprite id="instrument-control" x="184" y="563">
+      <mx:Button width="190" height="32" ariaLabel="Change instrument" backgroundColor="#243044" borderColor="#243044" cornerRadius="6"/>
+      <mx:Label id="instrument-label" x="6" y="6" height="20" text="GRAND PIANO  ›" color="#8E9BB0"/>
+    </mx:Sprite>
+    <mx:Label x="724" y="569" height="20" text="MAKE YOURSELF HEARD" color="#8290A5"/>
+    <mx:Label x="1207" y="569" height="20" text="Click a key. Or use your keyboard." color="#94A1B4"/>
+    <mx:Rect x="30" y="596" width="1540" height="5" fill="#8E445B"/>
+    <mx:Rect x="30" y="601" width="1540" height="3" fill="#152033"/>
+    <mx:Sprite id="piano">
+      <mx:Instance component="white-key" id="k48" x="32" y="604" ariaLabel="C3"/>
+      <mx:Instance component="white-key" id="k50" x="93.44" y="604" ariaLabel="D3"/>
+      <mx:Instance component="white-key" id="k52" x="154.88" y="604" ariaLabel="E3"/>
+      <mx:Instance component="white-key" id="k53" x="216.32" y="604" ariaLabel="F3"/>
+      <mx:Instance component="white-key" id="k55" x="277.76" y="604" ariaLabel="G3"/>
+      <mx:Instance component="white-key" id="k57" x="339.2" y="604" ariaLabel="A3"/>
+      <mx:Instance component="white-key" id="k59" x="400.64" y="604" ariaLabel="B3"/>
+      <mx:Instance component="white-key" id="k60" x="462.08" y="604" ariaLabel="C4"/>
+      <mx:Instance component="white-key" id="k62" x="523.52" y="604" ariaLabel="D4"/>
+      <mx:Instance component="white-key" id="k64" x="584.96" y="604" ariaLabel="E4"/>
+      <mx:Instance component="white-key" id="k65" x="646.4" y="604" ariaLabel="F4"/>
+      <mx:Instance component="white-key" id="k67" x="707.84" y="604" ariaLabel="G4"/>
+      <mx:Instance component="white-key" id="k69" x="769.28" y="604" ariaLabel="A4"/>
+      <mx:Instance component="white-key" id="k71" x="830.72" y="604" ariaLabel="B4"/>
+      <mx:Instance component="white-key" id="k72" x="892.16" y="604" ariaLabel="C5"/>
+      <mx:Instance component="white-key" id="k74" x="953.6" y="604" ariaLabel="D5"/>
+      <mx:Instance component="white-key" id="k76" x="1015.04" y="604" ariaLabel="E5"/>
+      <mx:Instance component="white-key" id="k77" x="1076.48" y="604" ariaLabel="F5"/>
+      <mx:Instance component="white-key" id="k79" x="1137.92" y="604" ariaLabel="G5"/>
+      <mx:Instance component="white-key" id="k81" x="1199.36" y="604" ariaLabel="A5"/>
+      <mx:Instance component="white-key" id="k83" x="1260.8" y="604" ariaLabel="B5"/>
+      <mx:Instance component="white-key" id="k84" x="1322.24" y="604" ariaLabel="C6"/>
+      <mx:Instance component="white-key" id="k86" x="1383.68" y="604" ariaLabel="D6"/>
+      <mx:Instance component="white-key" id="k88" x="1445.12" y="604" ariaLabel="E6"/>
+      <mx:Instance component="white-key" id="k89" x="1506.56" y="604" ariaLabel="F6"/>
+      <mx:Instance component="black-key" id="k49" x="74.44" y="604" ariaLabel="C sharp 3"/>
+      <mx:Instance component="black-key" id="k51" x="135.88" y="604" ariaLabel="D sharp 3"/>
+      <mx:Instance component="black-key" id="k54" x="258.76" y="604" ariaLabel="F sharp 3"/>
+      <mx:Instance component="black-key" id="k56" x="320.2" y="604" ariaLabel="G sharp 3"/>
+      <mx:Instance component="black-key" id="k58" x="381.64" y="604" ariaLabel="A sharp 3"/>
+      <mx:Instance component="black-key" id="k61" x="504.52" y="604" ariaLabel="C sharp 4"/>
+      <mx:Instance component="black-key" id="k63" x="565.96" y="604" ariaLabel="D sharp 4"/>
+      <mx:Instance component="black-key" id="k66" x="688.84" y="604" ariaLabel="F sharp 4"/>
+      <mx:Instance component="black-key" id="k68" x="750.28" y="604" ariaLabel="G sharp 4"/>
+      <mx:Instance component="black-key" id="k70" x="811.72" y="604" ariaLabel="A sharp 4"/>
+      <mx:Instance component="black-key" id="k73" x="934.6" y="604" ariaLabel="C sharp 5"/>
+      <mx:Instance component="black-key" id="k75" x="996.04" y="604" ariaLabel="D sharp 5"/>
+      <mx:Instance component="black-key" id="k78" x="1118.92" y="604" ariaLabel="F sharp 5"/>
+      <mx:Instance component="black-key" id="k80" x="1180.36" y="604" ariaLabel="G sharp 5"/>
+      <mx:Instance component="black-key" id="k82" x="1241.8" y="604" ariaLabel="A sharp 5"/>
+      <mx:Instance component="black-key" id="k85" x="1364.68" y="604" ariaLabel="C sharp 6"/>
+      <mx:Instance component="black-key" id="k87" x="1426.12" y="604" ariaLabel="D sharp 6"/>
+    </mx:Sprite>
+  </mx:Layer>
+
+  <mx:Layer name="Practice transport">
+    <mx:Rect y="805" width="1600" height="95" fill="#141E2D"/>
+    <mx:Rect y="805" width="1600" height="1" fill="#354157"/>
+    <mx:Sprite id="play-control" x="32" y="829">
+      <mx:Button width="48" height="48" ariaLabel="Play or pause lesson" backgroundColor="#E7E5F6" borderColor="#E7E5F6" cornerRadius="13"/>
+      <mx:Path id="pause-icon" d="M 17 15 H 21 V 33 H 17 Z M 27 15 H 31 V 33 H 27 Z" fill="#5E5682"/>
+      <mx:Path id="play-icon" d="M 18 14 L 34 24 L 18 34 Z" fill="#5E5682" visible="false"/>
+    </mx:Sprite>
+    <mx:Sprite id="restart-control" x="95" y="832">
+      <mx:Button width="42" height="42" ariaLabel="Restart lesson and reset score" backgroundColor="#192333" borderColor="#192333" cornerRadius="10"/>
+      <mx:Path d="M 13 16 C 18 8 32 13 31 23 C 30 32 16 33 12 26 M 11 10 V 18 H 19" fill="" stroke="#9DAABC" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+    </mx:Sprite>
+    <mx:Sprite id="loop-control" x="145" y="832">
+      <mx:Rect id="loop-face" width="42" height="42" fill="#192333" radiusTopLeft="10" radiusTopRight="10" radiusBottomLeft="10" radiusBottomRight="10"/>
+      <mx:Button width="42" height="42" ariaLabel="Toggle lesson loop" backgroundColor="#FFFFFF00" borderColor="#FFFFFF00" cornerRadius="10"/>
+      <mx:Path id="loop-icon" d="M 12 14 H 27 V 10 L 34 16 L 27 22 V 18 H 14 V 21 H 10 V 16 Z M 30 28 H 15 V 32 L 8 26 L 15 20 V 24 H 28 V 21 H 32 V 26 Z" fill="#9DAABC"/>
+    </mx:Sprite>
+    <mx:Sprite id="mode-control" x="206" y="832">
+      <mx:Button width="174" height="42" ariaLabel="Change practice mode: Wait for me, Play along, Listen, Free play" backgroundColor="#202C3E" borderColor="#334056" cornerRadius="11"/>
+      <mx:Rect x="15" y="18" width="7" height="7" fill="#6ABB96" radiusTopLeft="4" radiusTopRight="4" radiusBottomLeft="4" radiusBottomRight="4"/>
+      <mx:Label id="mode-label" x="33" y="11" height="21" text="Wait for me" color="#C8D1DF" fontWeight="500"/>
+      <mx:Path d="M 150 16 L 155 21 L 150 26" fill="" stroke="#8794A9" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    </mx:Sprite>
+    <mx:Sprite id="scrubber">
+      <mx:Rect x="412" y="832" width="610" height="43" fill="#09111D" stroke="#354156" strokeWidth="1" radiusTopLeft="22" radiusTopRight="22" radiusBottomLeft="22" radiusBottomRight="22"/>
+      <mx:Rect id="mini-progress" x="417" y="837" width="600" height="33" fill="#334E37" alpha="0.65" radiusTopLeft="16" radiusTopRight="16" radiusBottomLeft="16" radiusBottomRight="16"/>
+      <mx:Path d="M 563 835 V 872 M 716 835 V 872 M 869 835 V 872" fill="" stroke="#8A7841" strokeWidth="1"/>
+      <mx:Rect id="mini0" width="13" height="4" fill="#EEAC18"/><mx:Rect id="mini1" width="13" height="4" fill="#29A780"/>
+      <mx:Rect id="mini2" width="13" height="4" fill="#EEAC18"/><mx:Rect id="mini3" width="13" height="4" fill="#29A780"/>
+      <mx:Rect id="mini4" width="13" height="4" fill="#EEAC18"/><mx:Rect id="mini5" width="13" height="4" fill="#677CE0"/>
+      <mx:Rect id="mini6" width="13" height="4" fill="#29A780"/><mx:Rect id="mini7" width="13" height="4" fill="#76B94D"/>
+      <mx:Rect id="mini8" width="13" height="4" fill="#EB6D91"/><mx:Rect id="mini9" width="13" height="4" fill="#76B94D"/>
+      <mx:Rect id="mini10" width="13" height="4" fill="#EEAC18"/><mx:Rect id="mini11" width="13" height="4" fill="#EB6D91"/>
+      <mx:Rect id="mini12" width="13" height="4" fill="#677CE0"/><mx:Rect id="mini13" width="13" height="4" fill="#EEAC18"/>
+      <mx:Rect id="mini14" width="13" height="4" fill="#478FEC"/><mx:Rect id="mini15" width="13" height="4" fill="#677CE0"/>
+      <mx:Rect id="mini16" width="13" height="4" fill="#76B94D"/><mx:Rect id="mini17" width="13" height="4" fill="#EEAC18"/>
+      <mx:Rect id="mini18" width="13" height="4" fill="#EEAC18"/><mx:Rect id="mini19" width="13" height="4" fill="#29A780"/>
+      <mx:Rect id="mini20" width="13" height="4" fill="#EEAC18"/><mx:Rect id="mini21" width="13" height="4" fill="#29A780"/>
+      <mx:Rect id="mini22" width="13" height="4" fill="#EEAC18"/><mx:Rect id="mini23" width="13" height="4" fill="#677CE0"/>
+      <mx:Rect id="mini24" width="13" height="4" fill="#29A780"/><mx:Rect id="mini25" width="13" height="4" fill="#76B94D"/>
+      <mx:Rect id="mini26" width="13" height="4" fill="#EB6D91"/><mx:Rect id="mini27" width="13" height="4" fill="#76B94D"/>
+      <mx:Rect id="mini28" width="13" height="4" fill="#EEAC18"/><mx:Rect id="mini29" width="13" height="4" fill="#8963E8"/>
+      <mx:Rect id="mini30" width="13" height="4" fill="#29A780"/><mx:Rect id="mini31" width="13" height="4" fill="#EEAC18"/>
+      <mx:Rect id="mini-cursor" x="419" y="834" width="2" height="39" fill="#D3C46D"/>
+    </mx:Sprite>
+    <mx:Label id="time" x="1041" y="834" height="20" text="00:00 / 00:12" color="#AEBBCC" fontWeight="500"/>
+    <mx:Label id="progress-label" x="1041" y="857" height="20" text="0% COMPLETE" color="#65758D"/>
+    <mx:Rect x="1188" y="831" width="1" height="46" fill="#2C394D"/>
+    <mx:Path d="M 1211 841 H 1233 V 857 H 1211 Z M 1215 845 H 1218 M 1221 845 H 1224 M 1227 845 H 1230 M 1215 850 H 1218 M 1221 850 H 1230 M 1216 854 H 1228" fill="" stroke="#8EA2BA" strokeWidth="1.2"/>
+    <mx:Rect x="1228" y="840" width="6" height="6" fill="#70C99F" radiusTopLeft="3" radiusTopRight="3" radiusBottomLeft="3" radiusBottomRight="3"/>
+    <mx:Label x="1244" y="832" height="20" text="Keyboard ready" color="#A5B3C7"/>
+    <mx:Label id="accuracy" x="1244" y="856" height="20" text="--" color="#70829A"/>
+    <mx:Label x="1306" y="856" height="20" text="accuracy" color="#70829A"/>
+    <mx:Sprite id="hands-control" x="1419" y="832">
+      <mx:Button width="149" height="42" ariaLabel="Show right-hand fingering guide" backgroundColor="#202C3E" borderColor="#334056" cornerRadius="11"/>
+      <mx:Path d="M 18 28 L 13 21 Q 11 17 14 17 L 19 21 V 12 Q 21 9 23 12 V 20 V 9 Q 25 6 27 9 V 20 V 11 Q 29 8 31 11 V 22 V 15 Q 33 12 35 15 V 26 Q 35 33 28 34 H 24 Q 20 33 18 28 Z" fill="#D7DFEC"/>
+      <mx:Rect x="19" y="8" width="5" height="5" fill="#EEAC18"/><mx:Rect x="24" y="5" width="5" height="5" fill="#8963E8"/>
+      <mx:Rect x="29" y="8" width="5" height="5" fill="#478FEC"/><mx:Rect x="34" y="12" width="5" height="5" fill="#EB6D91"/>
+      <mx:Label x="50" y="11" height="21" text="Hands (RH)" color="#C8D1DF" fontWeight="500"/>
+    </mx:Sprite>
+  </mx:Layer>
+
+  <mx:Layer name="Right-hand coach">
+    <mx:Sprite id="hand-panel" x="1222" y="301" visible="false">
+      <mx:Rect y="5" width="338" height="241" fill="#607087" alpha="0.12" radiusTopLeft="18" radiusTopRight="18" radiusBottomLeft="18" radiusBottomRight="18"/>
+      <mx:Rect width="338" height="241" fill="#FFFFFF" stroke="#DBE3ED" strokeWidth="1" radiusTopLeft="18" radiusTopRight="18" radiusBottomLeft="18" radiusBottomRight="18"/>
+      <mx:Label x="21" y="17" height="25" text="A helping hand" color="#48556B" fontWeight="600"/>
+      <mx:Label x="21" y="45" height="20" text="Right hand / keep it relaxed" color="#929DB0"/>
+      <mx:Path d="M 114 166 L 84 138 Q 76 128 86 124 Q 91 122 102 133 L 119 146 V 100 Q 119 90 128 90 Q 137 90 137 100 V 131 V 86 Q 137 76 146 76 Q 155 76 155 86 V 130 V 94 Q 155 84 164 84 Q 173 84 173 95 V 137 V 112 Q 173 102 182 102 Q 191 102 191 112 V 163 Q 191 190 161 192 H 147 Q 124 190 114 166 Z" fill="#EEF1F7" stroke="#ADB8CB" strokeWidth="2"/>
+      <mx:Sprite id="finger1" x="74" y="113"><mx:Rect width="25" height="25" fill="#29A780" radiusTopLeft="13" radiusTopRight="13" radiusBottomLeft="13" radiusBottomRight="13"/><mx:Label x="9" y="3" height="20" text="1" color="#FFFFFF"/></mx:Sprite>
+      <mx:Sprite id="finger2" x="115" y="79"><mx:Rect width="25" height="25" fill="#EEAC18" radiusTopLeft="13" radiusTopRight="13" radiusBottomLeft="13" radiusBottomRight="13"/><mx:Label x="8" y="3" height="20" text="2" color="#FFFFFF"/></mx:Sprite>
+      <mx:Sprite id="finger3" x="134" y="61"><mx:Rect width="25" height="25" fill="#8963E8" radiusTopLeft="13" radiusTopRight="13" radiusBottomLeft="13" radiusBottomRight="13"/><mx:Label x="8" y="3" height="20" text="3" color="#FFFFFF"/></mx:Sprite>
+      <mx:Sprite id="finger4" x="156" y="76"><mx:Rect width="25" height="25" fill="#478FEC" radiusTopLeft="13" radiusTopRight="13" radiusBottomLeft="13" radiusBottomRight="13"/><mx:Label x="8" y="3" height="20" text="4" color="#FFFFFF"/></mx:Sprite>
+      <mx:Sprite id="finger5" x="178" y="95"><mx:Rect width="25" height="25" fill="#EB6D91" radiusTopLeft="13" radiusTopRight="13" radiusBottomLeft="13" radiusBottomRight="13"/><mx:Label x="8" y="3" height="20" text="5" color="#FFFFFF"/></mx:Sprite>
+      <mx:Label id="hand-current" x="105" y="207" height="22" text="E5 / Finger 5" color="#71748D" fontWeight="600"/>
+    </mx:Sprite>
+  </mx:Layer>
+
+  <mx:Layer name="Lesson dialogs">
+    <mx:Sprite id="modal" visible="false">
+      <mx:Rect id="modal-shade" width="1600" height="900" fill="#142239" alpha="0.56"/>
+      <mx:Rect x="440" y="184" width="720" height="566" fill="#102138" alpha="0.12" radiusTopLeft="24" radiusTopRight="24" radiusBottomLeft="24" radiusBottomRight="24"/>
+      <mx:Rect x="440" y="174" width="720" height="566" fill="#FFFFFF" radiusTopLeft="24" radiusTopRight="24" radiusBottomLeft="24" radiusBottomRight="24"/>
+      <mx:Sprite id="close-control" x="1096" y="199">
+        <mx:Button width="38" height="38" ariaLabel="Close dialog" backgroundColor="#F2F4F8" borderColor="#F2F4F8" cornerRadius="19"/>
+        <mx:Path d="M 13 13 L 25 25 M 25 13 L 13 25" fill="" stroke="#8390A4" strokeWidth="1.7" strokeLinecap="round"/>
+      </mx:Sprite>
+      <mx:Sprite id="library-panel">
+        <mx:Label x="484" y="214" height="20" text="YOUR NEXT SMALL WIN" color="#8D83B2" fontWeight="600"/>
+        <mx:Label x="484" y="249" height="43" text="Make room for more music." color="#344158" fontWeight="700"/>
+        <mx:Label id="library-summary" x="484" y="300" width="636" height="20" text="Choose a group and a short right-hand excerpt." color="#8A96A9"/>
+        <mx:Rect id="library-category-active" x="484" y="337" width="152" height="38" fill="#EDE8F7" radiusTopLeft="10" radiusTopRight="10" radiusBottomLeft="10" radiusBottomRight="10"/>
+        <mx:Button id="library-all" x="484" y="337" width="152" height="38" label="All lessons" ariaLabel="Show all lessons" backgroundColor="#FFFFFF00" borderColor="#FFFFFF00" color="#72658F" cornerRadius="10"/>
+        <mx:Button id="library-exercises" x="484" y="379" width="152" height="38" label="Exercises" ariaLabel="Show piano exercises" backgroundColor="#FFFFFF00" borderColor="#FFFFFF00" color="#72658F" cornerRadius="10"/>
+        <mx:Button id="library-traditional" x="484" y="421" width="152" height="38" label="Folk &amp; favorites" ariaLabel="Show folk and favorite songs" backgroundColor="#FFFFFF00" borderColor="#FFFFFF00" color="#72658F" cornerRadius="10"/>
+        <mx:Button id="library-classical" x="484" y="463" width="152" height="38" label="Classical &amp; ragtime" ariaLabel="Show classical and ragtime" backgroundColor="#FFFFFF00" borderColor="#FFFFFF00" color="#72658F" cornerRadius="10"/>
+        <mx:Button id="library-custom" x="484" y="505" width="152" height="38" label="Custom import" ariaLabel="Import a temporary custom lesson" backgroundColor="#FFFFFF00" borderColor="#FFFFFF00" color="#72658F" cornerRadius="10"/>
+        <mx:Label x="492" y="564" width="136" height="20" boxHeight="76" text="Every tune is ready.&#10;Try Auto play,&#10;then make it yours." color="#9A91AE"/>
+        <mx:Rect x="649" y="337" width="1" height="290" fill="#E7EAF1"/>
+        <mx:Instance component="library-card" id="library-row0" x="670" y="340"/>
+        <mx:Instance component="library-card" id="library-row1" x="670" y="414"/>
+        <mx:Instance component="library-card" id="library-row2" x="670" y="488"/>
+        <mx:Instance component="library-card" id="library-row3" x="670" y="562"/>
+        <mx:Sprite id="custom-import-panel" x="670" y="337" visible="false">
+          <mx:Label height="24" text="Convert MIDI, then paste the lesson entry." color="#534C71" fontWeight="600"/>
+          <mx:Label y="34" width="68" height="20" text="1. Open" color="#8A96A9"/>
+          <mx:Button id="lesson-converter-link" y="29" x="62" width="218" height="30" label="pianolesson-tau.vercel.app" ariaLabel="Open pianolesson-tau.vercel.app" backgroundColor="#FFFFFF00" borderColor="#FFFFFF00" color="#7770D8" cornerRadius="6"/>
+          <mx:Label x="286" y="34" width="158" height="20" text="and upload a MIDI file." color="#8A96A9"/>
+          <mx:Label y="61" width="444" height="20" boxHeight="55" text="2. Choose track, title, key, tempo and fingering.&#10;3. Copy TypeScript Lesson Entry (new Lesson...).&#10;4. Paste it below and add it as a temporary lesson." color="#8A96A9"/>
+          <mx:TextArea id="custom-lesson-input" y="132" width="444" height="118" text="" backgroundColor="#F8FAFD" borderColor="#DDE4EE" color="#344158" cornerRadius="10"/>
+          <mx:Button id="custom-import" y="265" width="194" height="38" label="Add temporary lesson" ariaLabel="Add pasted lesson as a temporary custom lesson" backgroundColor="#8980B2" borderColor="#8980B2" color="#FFFFFF" cornerRadius="10"/>
+          <mx:Label id="custom-lesson-status" x="210" y="272" width="234" height="20" boxHeight="52" text="Temporary lessons disappear when the app reloads." color="#8C82A4"/>
+        </mx:Sprite>
+        <mx:Button id="library-previous" x="670" y="648" width="94" height="36" label="Previous" ariaLabel="Previous library page" backgroundColor="#F1EFF8" borderColor="#E5DFF1" color="#8476A4" cornerRadius="9"/>
+        <mx:Label id="library-page-label" x="817" y="656" height="20" text="Page 1 of 1" color="#8A96A9"/>
+        <mx:Button id="library-next" x="1020" y="648" width="94" height="36" label="Next" ariaLabel="Next library page" backgroundColor="#F1EFF8" borderColor="#E5DFF1" color="#8476A4" cornerRadius="9"/>
+        <mx:Label id="library-notice" x="670" y="693" width="444" height="20" boxHeight="38" text="Choose a song, then practice or use Auto play." color="#8C82A4"/>
+      </mx:Sprite>
+      <mx:Sprite id="settings-panel" visible="false">
+        <mx:Label x="484" y="214" height="20" text="YOUR PRACTICE, YOUR PACE" color="#8D83B2" fontWeight="600"/>
+        <mx:Label x="484" y="249" height="43" text="Find your comfort zone." color="#344158" fontWeight="700"/>
+        <mx:Label x="484" y="338" height="25" text="Piano volume" color="#59677C" fontWeight="600"/>
+        <mx:Label x="484" y="367" height="20" text="Also adjusts the metronome" color="#99A4B5"/>
+        <mx:Button id="volume-minus" x="927" y="334" width="43" height="40" label="-" ariaLabel="Lower volume" backgroundColor="#F0F2F7" borderColor="#E4E9F0" cornerRadius="9"/>
+        <mx:Label id="volume-label" x="989" y="344" height="23" text="70%" color="#758196"/>
+        <mx:Button id="volume-plus" x="1068" y="334" width="43" height="40" label="+" ariaLabel="Raise volume" backgroundColor="#F0F2F7" borderColor="#E4E9F0" cornerRadius="9"/>
+        <mx:Rect x="484" y="397" width="628" height="1" fill="#EDF0F5"/>
+        <mx:Label x="484" y="415" height="25" text="Metronome" color="#59677C" fontWeight="600"/>
+        <mx:Label x="484" y="444" height="20" text="A steady beat in Play along and Listen" color="#99A4B5"/>
+        <mx:Sprite id="metronome-control" x="1022" y="411"><mx:Button width="90" height="40" ariaLabel="Toggle metronome" backgroundColor="#F0EDF9" borderColor="#E5DEF3" cornerRadius="20"/><mx:Label id="metronome-label" x="31" y="9" height="22" text="Off" color="#8F80B8"/></mx:Sprite>
+        <mx:Rect x="484" y="476" width="628" height="1" fill="#EDF0F5"/>
+        <mx:Label x="484" y="495" height="25" text="Practice instructions" color="#59677C" fontWeight="600"/>
+        <mx:Label x="484" y="524" height="20" text="Show which note and keyboard key to play" color="#99A4B5"/>
+        <mx:Sprite id="instructions-control" x="1022" y="491"><mx:Button width="90" height="40" ariaLabel="Toggle practice instructions" backgroundColor="#F0EDF9" borderColor="#E5DEF3" cornerRadius="20"/><mx:Label id="instructions-label" x="31" y="9" height="22" text="On" color="#8F80B8"/></mx:Sprite>
+        <mx:Rect x="484" y="556" width="628" height="1" fill="#EDF0F5"/>
+        <mx:Label x="484" y="575" height="25" text="Note names &amp; keyboard shortcuts" color="#59677C" fontWeight="600"/>
+        <mx:Sprite id="labels-control" x="1022" y="571"><mx:Button width="90" height="40" ariaLabel="Toggle key labels" backgroundColor="#F0EDF9" borderColor="#E5DEF3" cornerRadius="20"/><mx:Label id="labels-label" x="31" y="9" height="22" text="On" color="#8F80B8"/></mx:Sprite>
+        <mx:Rect x="484" y="636" width="628" height="1" fill="#EDF0F5"/>
+        <mx:Label x="484" y="655" height="25" text="Finger numbers" color="#59677C" fontWeight="600"/>
+        <mx:Sprite id="fingers-control" x="1022" y="651"><mx:Button width="90" height="40" ariaLabel="Toggle finger numbers" backgroundColor="#F0EDF9" borderColor="#E5DEF3" cornerRadius="20"/><mx:Label id="fingers-label" x="31" y="9" height="22" text="On" color="#8F80B8"/></mx:Sprite>
+        <mx:Label x="586" y="698" height="20" text="Your lesson pauses while you make yourself at home." color="#A2ABBA"/>
+      </mx:Sprite>
+      <mx:Sprite id="help-panel" visible="false">
+        <mx:Label x="484" y="214" height="20" text="EVERY PIANIST STARTS SOMEWHERE" color="#8D83B2" fontWeight="600"/>
+        <mx:Label x="484" y="249" height="43" text="One note at a time." color="#344158" fontWeight="700"/>
+        <mx:Label x="484" y="324" height="25" text="1. Find the highlighted key." color="#647286" fontWeight="600"/>
+        <mx:Label x="511" y="358" height="22" text="Click or touch a piano key. Its color matches the note above." color="#8A96A9"/>
+        <mx:Label x="484" y="405" height="25" text="2. Let your keyboard become a piano." color="#647286" fontWeight="600"/>
+        <mx:Label x="511" y="440" height="22" text="White keys: A S D F G H J K L ;  =  C4 D4 E4 F4 G4 A4 B4 C5 D5 E5" color="#8A96A9"/>
+        <mx:Label x="511" y="473" height="22" text="Black keys: W E T Y U O P.  Hold several keys to play a chord." color="#8A96A9"/>
+        <mx:Label x="484" y="520" height="25" text="3. Practice your way." color="#647286" fontWeight="600"/>
+        <mx:Label x="511" y="555" height="22" text="Wait for me pauses at each note. Play along keeps the beat." color="#8A96A9"/>
+        <mx:Label x="511" y="588" height="22" text="Auto play demos the melody. Follow the keys, then try it yourself." color="#8A96A9"/>
+        <mx:Rect x="484" y="642" width="628" height="57" fill="#F4F3FA" radiusTopLeft="12" radiusTopRight="12" radiusBottomLeft="12" radiusBottomRight="12"/>
+        <mx:Label x="536" y="660" height="22" text="SPACE  Play / pause       ESC  Close dialog       1-5  Finger numbers" color="#9487B2"/>
+      </mx:Sprite>
+      <mx:Sprite id="result-panel" visible="false">
+        <mx:Rect x="751" y="219" width="96" height="96" fill="#E8F5EF" radiusTopLeft="48" radiusTopRight="48" radiusBottomLeft="48" radiusBottomRight="48"/>
+        <mx:Path d="M 774 263 L 792 281 L 826 246" fill="" stroke="#6FAD92" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round"/>
+        <mx:Label id="result-title" x="549" y="348" height="40" text="A little better. Every note." color="#46576B" fontWeight="700"/>
+        <mx:Label id="result-detail" x="562" y="401" height="23" text="You played every note." color="#99A4B3"/>
+        <mx:Rect x="524" y="458" width="249" height="112" fill="#F4F3FA" radiusTopLeft="16" radiusTopRight="16" radiusBottomLeft="16" radiusBottomRight="16"/>
+        <mx:Rect x="801" y="458" width="274" height="112" fill="#F0F7F3" radiusTopLeft="16" radiusTopRight="16" radiusBottomLeft="16" radiusBottomRight="16"/>
+        <mx:Label x="548" y="475" height="20" text="POINTS EARNED" color="#A296BC"/>
+        <mx:Label id="result-score" x="548" y="503" height="49" text="0" color="#7C6D9F" fontWeight="700"/>
+        <mx:Label x="828" y="475" height="20" text="ACCURACY" color="#91AC9E"/>
+        <mx:Label id="result-accuracy" x="828" y="503" height="49" text="100%" color="#749784" fontWeight="700"/>
+        <mx:Button id="practice-again" x="524" y="610" width="249" height="50" label="Practice again" ariaLabel="Practice again in Wait for me mode" backgroundColor="#8980B2" borderColor="#8980B2" color="#FFFFFF" cornerRadius="12"/>
+        <mx:Button id="next-lesson" x="801" y="610" width="274" height="50" label="Explore the lessons" ariaLabel="Choose another lesson" backgroundColor="#F1F3F8" borderColor="#E2E7EF" color="#7A899D" cornerRadius="12"/>
+        <mx:Label x="612" y="697" height="20" text="Progress isn't perfect. It's showing up." color="#A2ABBA"/>
+      </mx:Sprite>
+    </mx:Sprite>
+  </mx:Layer>
+
+  <mx:Listener target="library-control" on="click"><mx:RunScript name="openLibrary"/></mx:Listener>
+  <mx:Listener target="settings-control" on="click"><mx:RunScript name="openSettings"/></mx:Listener>
+  <mx:Listener target="help-control" on="click"><mx:RunScript name="openHelp"/></mx:Listener>
+  <mx:Listener target="demo-control" on="click"><mx:RunScript name="startDemo"/></mx:Listener>
+  <mx:Listener target="stop-demo-control" on="click"><mx:RunScript name="retryPractice"/></mx:Listener>
+  <mx:Listener target="fullscreen-control" on="click"><mx:Notify event="fullscreen"/></mx:Listener>
+  <mx:Listener target="lesson-converter-link" on="click"><mx:Notify event="openLessonConverter"/></mx:Listener>
+  <mx:Listener target="flow-control" on="click"><mx:RunScript name="sheetFlow"/></mx:Listener>
+  <mx:Listener target="waterfall-control" on="click"><mx:RunScript name="waterfall"/></mx:Listener>
+  <mx:Listener target="sheet-control" on="click"><mx:RunScript name="sheetOnly"/></mx:Listener>
+  <mx:Listener target="tempo-minus" on="click"><mx:RunScript name="tempoDown"/></mx:Listener>
+  <mx:Listener target="tempo-plus" on="click"><mx:RunScript name="tempoUp"/></mx:Listener>
+  <mx:Listener target="play-control" on="click"><mx:RunScript name="togglePlay"/></mx:Listener>
+  <mx:Listener target="restart-control" on="click"><mx:RunScript name="restart"/></mx:Listener>
+  <mx:Listener target="loop-control" on="click"><mx:RunScript name="toggleLoop"/></mx:Listener>
+  <mx:Listener target="mode-control" on="click"><mx:RunScript name="cycleMode"/></mx:Listener>
+  <mx:Listener target="scrubber" on="click"><mx:RunScript name="seek"/></mx:Listener>
+  <mx:Listener target="hands-control" on="click"><mx:RunScript name="toggleHands"/></mx:Listener>
+  <mx:Listener target="close-control" on="click"><mx:RunScript name="closeOverlay"/></mx:Listener>
+  <mx:Listener target="modal-shade" on="click"><mx:RunScript name="closeOverlay"/></mx:Listener>
+  <mx:Listener target="library-all" on="click"><mx:RunScript name="libraryAll"/></mx:Listener>
+  <mx:Listener target="library-exercises" on="click"><mx:RunScript name="libraryExercises"/></mx:Listener>
+  <mx:Listener target="library-traditional" on="click"><mx:RunScript name="libraryTraditional"/></mx:Listener>
+  <mx:Listener target="library-classical" on="click"><mx:RunScript name="libraryClassical"/></mx:Listener>
+  <mx:Listener target="library-custom" on="click"><mx:RunScript name="libraryCustom"/></mx:Listener>
+  <mx:Listener target="custom-import" on="click"><mx:RunScript name="importCustomLesson"/></mx:Listener>
+  <mx:Listener target="library-previous" on="click"><mx:RunScript name="libraryPrevious"/></mx:Listener>
+  <mx:Listener target="library-next" on="click"><mx:RunScript name="libraryNext"/></mx:Listener>
+  <mx:Listener target="library-row0" on="click"><mx:RunScript name="libraryRowOne"/></mx:Listener>
+  <mx:Listener target="library-row1" on="click"><mx:RunScript name="libraryRowTwo"/></mx:Listener>
+  <mx:Listener target="library-row2" on="click"><mx:RunScript name="libraryRowThree"/></mx:Listener>
+  <mx:Listener target="library-row3" on="click"><mx:RunScript name="libraryRowFour"/></mx:Listener>
+  <mx:Listener target="volume-minus" on="click"><mx:RunScript name="volumeDown"/></mx:Listener>
+  <mx:Listener target="volume-plus" on="click"><mx:RunScript name="volumeUp"/></mx:Listener>
+  <mx:Listener target="instrument-control" on="click"><mx:RunScript name="cycleInstrument"/></mx:Listener>
+  <mx:Listener target="metronome-control" on="click"><mx:RunScript name="toggleMetronome"/></mx:Listener>
+  <mx:Listener target="instructions-control" on="click"><mx:RunScript name="toggleInstructions"/></mx:Listener>
+  <mx:Listener target="labels-control" on="click"><mx:RunScript name="toggleLabels"/></mx:Listener>
+  <mx:Listener target="fingers-control" on="click"><mx:RunScript name="toggleFingerColors"/></mx:Listener>
+  <mx:Listener target="practice-again" on="click"><mx:RunScript name="retryPractice"/></mx:Listener>
+  <mx:Listener target="next-lesson" on="click"><mx:RunScript name="openLibrary"/></mx:Listener>
+  <mx:Listener target="piano" on="down"><mx:RunScript name="pointerPress"/></mx:Listener>
+  <mx:Listener target="k48" on="click"><mx:RunScript name="note48"/></mx:Listener>
+  <mx:Listener target="k49" on="click"><mx:RunScript name="note49"/></mx:Listener>
+  <mx:Listener target="k50" on="click"><mx:RunScript name="note50"/></mx:Listener>
+  <mx:Listener target="k51" on="click"><mx:RunScript name="note51"/></mx:Listener>
+  <mx:Listener target="k52" on="click"><mx:RunScript name="note52"/></mx:Listener>
+  <mx:Listener target="k53" on="click"><mx:RunScript name="note53"/></mx:Listener>
+  <mx:Listener target="k54" on="click"><mx:RunScript name="note54"/></mx:Listener>
+  <mx:Listener target="k55" on="click"><mx:RunScript name="note55"/></mx:Listener>
+  <mx:Listener target="k56" on="click"><mx:RunScript name="note56"/></mx:Listener>
+  <mx:Listener target="k57" on="click"><mx:RunScript name="note57"/></mx:Listener>
+  <mx:Listener target="k58" on="click"><mx:RunScript name="note58"/></mx:Listener>
+  <mx:Listener target="k59" on="click"><mx:RunScript name="note59"/></mx:Listener>
+  <mx:Listener target="k60" on="click"><mx:RunScript name="note60"/></mx:Listener>
+  <mx:Listener target="k61" on="click"><mx:RunScript name="note61"/></mx:Listener>
+  <mx:Listener target="k62" on="click"><mx:RunScript name="note62"/></mx:Listener>
+  <mx:Listener target="k63" on="click"><mx:RunScript name="note63"/></mx:Listener>
+  <mx:Listener target="k64" on="click"><mx:RunScript name="note64"/></mx:Listener>
+  <mx:Listener target="k65" on="click"><mx:RunScript name="note65"/></mx:Listener>
+  <mx:Listener target="k66" on="click"><mx:RunScript name="note66"/></mx:Listener>
+  <mx:Listener target="k67" on="click"><mx:RunScript name="note67"/></mx:Listener>
+  <mx:Listener target="k68" on="click"><mx:RunScript name="note68"/></mx:Listener>
+  <mx:Listener target="k69" on="click"><mx:RunScript name="note69"/></mx:Listener>
+  <mx:Listener target="k70" on="click"><mx:RunScript name="note70"/></mx:Listener>
+  <mx:Listener target="k71" on="click"><mx:RunScript name="note71"/></mx:Listener>
+  <mx:Listener target="k72" on="click"><mx:RunScript name="note72"/></mx:Listener>
+  <mx:Listener target="k73" on="click"><mx:RunScript name="note73"/></mx:Listener>
+  <mx:Listener target="k74" on="click"><mx:RunScript name="note74"/></mx:Listener>
+  <mx:Listener target="k75" on="click"><mx:RunScript name="note75"/></mx:Listener>
+  <mx:Listener target="k76" on="click"><mx:RunScript name="note76"/></mx:Listener>
+  <mx:Listener target="k77" on="click"><mx:RunScript name="note77"/></mx:Listener>
+  <mx:Listener target="k78" on="click"><mx:RunScript name="note78"/></mx:Listener>
+  <mx:Listener target="k79" on="click"><mx:RunScript name="note79"/></mx:Listener>
+  <mx:Listener target="k80" on="click"><mx:RunScript name="note80"/></mx:Listener>
+  <mx:Listener target="k81" on="click"><mx:RunScript name="note81"/></mx:Listener>
+  <mx:Listener target="k82" on="click"><mx:RunScript name="note82"/></mx:Listener>
+  <mx:Listener target="k83" on="click"><mx:RunScript name="note83"/></mx:Listener>
+  <mx:Listener target="k84" on="click"><mx:RunScript name="note84"/></mx:Listener>
+  <mx:Listener target="k85" on="click"><mx:RunScript name="note85"/></mx:Listener>
+  <mx:Listener target="k86" on="click"><mx:RunScript name="note86"/></mx:Listener>
+  <mx:Listener target="k87" on="click"><mx:RunScript name="note87"/></mx:Listener>
+  <mx:Listener target="k88" on="click"><mx:RunScript name="note88"/></mx:Listener>
+  <mx:Listener target="k89" on="click"><mx:RunScript name="note89"/></mx:Listener>
+</mx:Scene>

@@ -1,0 +1,11 @@
+{
+  "appId": "com.devois.VirtuosoApp",
+  "appName": "Virtuoso",
+  "scene": {
+    "width": 1600,
+    "height": 900,
+    "fps": 60
+  },
+  "bundleSha256": "fb6cd97c0c45fe055c4f693efe573eaed46b3c5a8385e8cfcffa34722a52acfb",
+  "sdkRuntime": "rebuilt"
+}

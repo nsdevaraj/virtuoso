@@ -1,0 +1,4 @@
+module LittleAFFI [system] {
+  header "littlea.h"
+  export *
+}

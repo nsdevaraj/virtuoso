@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#141e2d">
+  <meta name="description" content="A little practice. A lot of possibility. Learn piano with colorful notes, a playable keyboard, and gentle guidance. Built with LittleA LAX.">
+  <title>Swag - A little piano, every day</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%238980b2'/%3E%3Cpath d='M16 17h32v32H16z' fill='white'/%3E%3Cpath d='M25 17v32m14-32v32' stroke='%238980b2' stroke-width='2'/%3E%3Cpath d='M23 17h5v19h-5zm14 0h5v19h-5z' fill='%238980b2'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./piano.css">
+  <script type="module" src="./app.mjs"></script>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+</head>
+<body>
+  <main id="stage" aria-label="Swag piano teaching app">
+    <section id="loading" role="status">
+      <div class="piano-mark" aria-hidden="true"><i></i><i></i><i></i></div>
+      <h1>swag</h1>
+      <p>A little piano, every day.</p>
+      <span id="loading-message">Setting the stage...</span>
+    </section>
+    <canvas id="piano" width="1600" height="900" tabindex="0" hidden
+      aria-label="Interactive piano lesson. Use the lesson library to choose a song."
+      aria-describedby="keyboard-help live-hint"></canvas>
+    <aside id="error" role="alert" hidden></aside>
+    <p id="keyboard-help" class="sr-only">Play C4 through E5 with A W S E D F T G Y H U J K O L P semicolon.
+      No initial click is needed. Hold several keys for a chord. Space pauses or resumes.
+      Escape closes a dialog. Click or touch any piano key to play it.</p>
+    <p id="live-hint" class="sr-only" aria-live="polite" aria-atomic="true"></p>
+    <noscript>This LAX player needs JavaScript to start its native WebAssembly runtime.</noscript>
+  </main>
+  <p class="orientation-hint">A little more room for music: turn your device sideways.</p>
+</body>
+</html>

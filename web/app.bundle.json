@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "scene": {
+    "width": 1600,
+    "height": 900,
+    "fps": 60
+  },
+  "files": {
+    "app.lax": "c7a0b9846adfed3aeae7f9100e8268a0beaa2c034e5283b44c951a292ffbdec3",
+    "piano.ls.ts": "b686e06ec2793f1d3399bd1e145bd1e5408870b43c9a6e79a5756fcddd33ef60",
+    "catalog.ls.ts": "cfcf11a53eee8c30b4055e6d6d64d4e638d9b70c2d0fa5444981f815c8d4b3a8",
+    "assets/piano-a4.wav": "6daf89e0fac7bab1f8b05d9576bba22c7ce70f8c99bf691f29d367ee77adac3f",
+    "assets/organ-a4.wav": "2fa0cfc185f0c7881c015798f5b7f0dc6965b81872673f2c6739e9be201af75e",
+    "assets/synth-a4.wav": "3777ad55c175d078d771017ddceb99fe2cc5989d382a19bed6267ecd4c01f2ed",
+    "assets/drum-kick.wav": "c428c128709a84a042d9e4108ec7da4b5b3dc1d3ff1d98af86cde2282d87ec43",
+    "assets/drum-snare.wav": "67b87ed23df68c4f06fe1b8ba155307f84f82385db00a7c42bec232ec1f60eda",
+    "assets/drum-hat.wav": "98da6652846a66b981a2cdefddae0ca6fcfabb185ff0bbe7c6b1c0c1b7fcffec",
+    "assets/electronic-kick.wav": "ec30be6e08c852abf757be3f419e6f92317d1c7af7ae629ac6115e5a280488f2",
+    "assets/electronic-snare.wav": "93a085b7d6ad13d28c765bbe4e4e7816f9848535d25353b6666b054e7254cec5",
+    "assets/electronic-hat.wav": "b5558b72b4d643bf40f07b79a5028b7ae5cdac5f4c003ab583a2d3e0fcb5c268",
+    "assets/metronome.wav": "61199b8ed611ce44c155c03e6991fac5fa1c4b1bd7b630abbb01a4718dbef6e5",
+    "app.lab": "71ebf2bdfb962cb11ea1e5a909603616b898722c50f9e3a4830379dbda2b53b2"
+  }
+}

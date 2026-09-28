@@ -32,12 +32,21 @@ declare function playSoundEx(ptr: usize, len: i32, gain: f32, loop: i32, pitch: 
 declare function updateSound(ptr: usize, len: i32, gain: f32, pitch: f32, pan: f32, fade: f32): void;
 @external("la", "stopSound")
 declare function stopSound(ptr: usize, len: i32): void;
+@external("la", "dataSetString")
+declare function dataSetString(path: usize, length: i32, value: usize, valueLength: i32): i32;
 
 const FIRST: i32 = 48;
 const KEY_COUNT: i32 = 42;
 const KEY_X: f32 = 32;
 const KEY_Y: f32 = 604;
 const KEY_STEP: f32 = 61.44;
+const PLAIN_SCALE_X: f32 = 3.5;
+const PLAIN_SCALE_Y: f32 = 3.9;
+const PLAIN_KEY_Y: f32 = 96;
+const PLAIN_CONTENT_WIDTH: f32 = (KEY_X + 25 * KEY_STEP) * PLAIN_SCALE_X;
+const PLAIN_SCROLL_MAX: f32 = PLAIN_CONTENT_WIDTH - 1600;
+const PLAIN_THUMB_WIDTH: f32 = 1384 * 1600 / PLAIN_CONTENT_WIDTH;
+const PLAIN_THUMB_TRAVEL: f32 = 1384 - PLAIN_THUMB_WIDTH;
 const WHITE_PITCHES: i32[] = [0, 2, 4, 5, 7, 9, 11];
 const WHITE_POSITIONS: i32[] = [0, 1, 1, 2, 2, 3, 4, 4, 5, 5, 6, 6];
 const STAFF_POSITIONS: i32[] = [0, 0, 1, 1, 2, 3, 3, 4, 4, 5, 5, 6];
@@ -49,6 +58,13 @@ const COLORS: u32[] = [0x76B94DFF, 0x669A42FF, 0x29A780FF, 0x219879FF, 0xEEAC18F
 const LIBRARY_PAGE_SIZE: i32 = 4;
 const CATEGORY_NAMES: string[] = ["All lessons", "Exercises", "Folk & favorites", "Classical & ragtime", "Custom import"];
 const CUSTOM_IMPORT_LIMIT: i32 = 8192;
+const RECORD_LIMIT: i32 = 512;
+const RECORD_TAP_FRAMES: i32 = 12;
+// Quarter-beat steps; two 4/4 bars caps long pauses in the exported lesson.
+const EXPORT_MAX_QUARTERS: i32 = 32;
+const EXPORT_PREVIEW_CHARS: i32 = 76;
+const RECORDING_TITLE: string = "My recording";
+const RECORDING_AUTHOR: string = "Recorded in Swag";
 
 let melody: i32[] = [];
 let fingers: i32[] = [];
@@ -67,6 +83,9 @@ let index: i32 = 0;
 let tempo: i32 = 84;
 let mode: i32 = 0;
 let view: i32 = 0;
+let savedMode: i32 = 0;
+let scrollOffset: f32 = 0;
+let scrollDragging: bool = false;
 let score: i32 = 0;
 let hits: i32 = 0;
 let attempts: i32 = 0;
@@ -77,7 +96,7 @@ let looping: bool = false;
 let metronome: bool = false;
 let labels: bool = true;
 let hands: bool = true;
-let instructions: bool = true;
+let instructions: bool = false;
 let handPanel: bool = false;
 let volume: f32 = 0.7;
 let instrument: i32 = 0;
@@ -114,6 +133,20 @@ let importSource: string = "";
 let importCursor: i32 = 0;
 let importOk: bool = true;
 const importBuffer: Uint8Array = new Uint8Array(CUSTOM_IMPORT_LIMIT);
+let recording: bool = false;
+let replaying: bool = false;
+let recordOrigin: i32 = 0;
+let recordTempo: i32 = 84;
+let recordNotes: i32[] = [];
+let recordStarts: i32[] = [];
+let recordEnds: i32[] = [];
+let replayFrame: i32 = 0;
+let replayCursor: i32 = 0;
+let replayUntil: Int32Array = new Int32Array(KEY_COUNT);
+let replayFades: Int32Array = new Int32Array(KEY_COUNT);
+let exportNotes: i32[] = [];
+let exportFingers: i32[] = [];
+let exportQuarters: i32[] = [];
 
 export function __la_abi_version(): i32 { return 22; }
 
@@ -291,7 +324,7 @@ function updateKeys(): void {
     const note = FIRST + i;
     const finger = guide.indexOf(note);
     const guideFinger = finger >= 0 ? guideFingers[finger] : 0;
-    const active = keyHeld[i] != 0 || (flashFrames > 0 && flashNote == note)
+    const active = keyHeld[i] != 0 || replayUntil[i] != 0 || (flashFrames > 0 && flashNote == note)
       || (mode == 2 && playing && demoStarted && !completed && melody[index] == note);
     const expected = mode != 3 && !completed && melody[index] == note;
     const guided = playing && expected;
@@ -333,6 +366,7 @@ function next(): void {
 function press(note: i32): void {
   if (overlay != 0) return;
   sound(note);
+  if (recording) recordPress(note);
   flashNote = note; flashFrames = 12;
   if (!playing || completed || mode == 2 || mode == 3 || currentHit) { updateKeys(); return; }
   attempts++;
@@ -356,7 +390,8 @@ function press(note: i32): void {
 }
 
 function pointerPitch(): i32 {
-  const x = pointerX(), y = pointerY();
+  const x = view == 3 ? (pointerX() + scrollOffset) / PLAIN_SCALE_X : pointerX();
+  const y = view == 3 ? KEY_Y + (pointerY() - PLAIN_KEY_Y) / PLAIN_SCALE_Y : pointerY();
   if (x < KEY_X || x >= KEY_X + 25 * KEY_STEP || y < KEY_Y || y > KEY_Y + 194) return -1;
   if (y < KEY_Y + 126) {
     for (let note = FIRST; note < FIRST + KEY_COUNT; note++) {
@@ -418,17 +453,56 @@ function drawNotes(): void {
 }
 
 function setView(value: i32): void {
+  if (view != 3 && value == 3) {
+    savedMode = mode;
+    mode = 3;
+    stopAll();
+  } else if (view == 3 && value != 3) {
+    mode = savedMode;
+    stopAll();
+  }
   view = value;
-  visible("staff", view != 1);
-  visible("staff-cursor", view != 1);
+  const plainView = view == 3;
+  visible("practice-room", !plainView);
+  visible("practice-transport", !plainView);
+  visible("right-hand-coach", !plainView);
+  visible("scoreboard", !plainView);
+  setX(node("recorder"), plainView ? 1204 : 392);
+  setY(node("recorder"), plainView ? 31 : 563);
+  visible("plain-backdrop", plainView);
+  visible("plain-scroll", plainView);
+  visible("plain-scroll-left", plainView);
+  visible("plain-scroll-right", plainView);
+  setY(node("grand-piano-content"), plainView ? -458 : 0);
+  setScale(node("piano"), plainView ? PLAIN_SCALE_X : 1, plainView ? PLAIN_SCALE_Y : 1);
+  setY(node("piano"), plainView ? PLAIN_KEY_Y + 458 - KEY_Y * PLAIN_SCALE_Y : 0);
+  setX(node("piano"), plainView ? -scrollOffset : 0);
+  visible("staff", view != 1 && !plainView);
+  visible("staff-cursor", view != 1 && !plainView);
   visible("waterfall-lanes", view == 1);
-  setX(node("tab-active"), view == 0 ? 466 : view == 1 ? 639 : 801);
+  setX(node("tab-active"), view == 0 ? 466 : view == 1 ? 593 : view == 2 ? 720 : 847);
+  setScale(node("tab-active"), plainView ? 0.88 : 1, 1);
   text("view-description", view == 0 ? "SHEET + FLOW" : view == 1 ? "FOLLOW THE FALLING NOTES" : "READ THE MELODY");
+  refresh();
   drawNotes();
 }
 export function sheetFlow(): void { setView(0); }
 export function waterfall(): void { setView(1); }
 export function sheetOnly(): void { setView(2); }
+export function plain(): void { setView(view == 3 ? 0 : 3); }
+function setScroll(value: f32): void {
+  scrollOffset = max(<f32>0, min(PLAIN_SCROLL_MAX, value));
+  setX(node("piano"), -scrollOffset);
+  setScale(node("plain-scroll-thumb"), PLAIN_THUMB_WIDTH / 890, 1);
+  setX(node("plain-scroll-thumb"), 8 + scrollOffset / PLAIN_SCROLL_MAX * PLAIN_THUMB_TRAVEL);
+}
+export function scrollLeft(): void { if (view == 3) setScroll(scrollOffset - 200); }
+export function scrollRight(): void { if (view == 3) setScroll(scrollOffset + 200); }
+export function scrollToPointer(): void {
+  if (view != 3) return;
+  scrollDragging = true;
+  setScroll((pointerX() - 108 - PLAIN_THUMB_WIDTH / 2) / PLAIN_THUMB_TRAVEL * PLAIN_SCROLL_MAX);
+}
 export function tempoDown(): void { tempo = max(40, tempo - 4); refresh(); }
 export function tempoUp(): void { tempo = min(160, tempo + 4); refresh(); }
 export function toggleLoop(): void { looping = !looping; refresh(); }
@@ -458,6 +532,8 @@ export function seek(): void {
   refresh(); drawNotes();
 }
 function showOverlay(kind: i32): void {
+  stopRecording();
+  stopReplay();
   if (overlay == 0) resumeAfterModal = playing;
   overlay = kind; playing = false;
   if (kind != 4) stopAll();
@@ -466,6 +542,7 @@ function showOverlay(kind: i32): void {
   visible("settings-panel", kind == 2);
   visible("help-panel", kind == 3);
   visible("result-panel", kind == 4);
+  visible("export-panel", kind == 5);
   refresh();
 }
 export function closeOverlay(): void {
@@ -644,7 +721,7 @@ function validateCustomLesson(notes: i32[], fingers: i32[], beats: f32[],
     return false;
   }
   if (lessonTempo < 40 || lessonTempo > 160 || numerator <= 0 || denominator <= 0 || guideNotes.length != guideFingers.length) {
-    importFail("Tempo, meter, or guide-note data is outside the Virtuoso range.");
+    importFail("Tempo, meter, or guide-note data is outside the Swag range.");
     return false;
   }
   for (let i = 0; i < notes.length; i++) {
@@ -688,13 +765,16 @@ export function importCustomLesson(): void {
     category, level, numerator, denominator, lessonTempo)) return;
   const entry = new Lesson(title, author, category, level, keySignature, numerator, denominator, lessonTempo,
     notes, lessonFingers, beats, guideNotes, customGuideFingers, source);
+  text("custom-lesson-status", "Added temporary lesson: " + title + ". It will reset when you reload.");
+  installCustomLesson(entry);
+}
+function installCustomLesson(entry: Lesson): void {
   if (customLesson < 0) {
     CATALOG.push(entry);
     customLesson = CATALOG.length - 1;
   } else {
     CATALOG[customLesson] = entry;
   }
-  text("custom-lesson-status", "Added temporary lesson: " + title + ". It will reset when you reload.");
   loadLesson(customLesson);
 }
 function pickLibraryRow(row: i32): void {
@@ -749,6 +829,174 @@ function settings(): void {
   visible("guidance", instructions);
 }
 
+function say(message: string): void {
+  text("feedback", message);
+  feedbackFrames = 150;
+}
+function drawRecorder(): void {
+  visible("record-control", !recording);
+  visible("stop-record-control", recording);
+  visible("replay-control", !replaying);
+  visible("stop-replay-control", replaying);
+  const ready: f32 = recordNotes.length > 0 ? 1 : 0.45;
+  setAlpha(node("replay-control"), ready);
+  setAlpha(node("export-control"), ready);
+}
+function recordPress(note: i32): void {
+  if (recordNotes.length == 0) recordOrigin = clock;
+  recordNotes.push(note);
+  recordStarts.push(clock - recordOrigin);
+  recordEnds.push(-1);
+  if (recordNotes.length == 1) drawRecorder();
+  if (recordNotes.length == RECORD_LIMIT) {
+    stopRecording();
+    say("Recording is full at " + RECORD_LIMIT.toString() + " notes. Replay or export it.");
+  }
+}
+function recordRelease(note: i32): void {
+  for (let i = recordNotes.length - 1; i >= 0; i--) {
+    if (recordNotes[i] != note) continue;
+    if (recordEnds[i] < 0) recordEnds[i] = clock - recordOrigin;
+    return;
+  }
+}
+export function startRecording(): void {
+  if (overlay != 0) return;
+  stopReplay();
+  recordNotes = []; recordStarts = []; recordEnds = [];
+  recordTempo = tempo;
+  recording = true;
+  drawRecorder();
+  say("Recording. Play anything, then press Stop.");
+}
+export function stopRecording(): void {
+  if (!recording) return;
+  recording = false;
+  drawRecorder();
+  say(recordNotes.length == 0 ? "Nothing was recorded. Press Record to try again."
+    : "Recorded " + recordNotes.length.toString() + " notes. Replay it, or export it as a lesson.");
+}
+export function replayRecording(): void {
+  if (overlay != 0) return;
+  stopRecording();
+  if (recordNotes.length == 0) { say("Record a few notes first, then replay them."); return; }
+  stopReplay();
+  replaying = true; replayFrame = -1; replayCursor = 0;
+  drawRecorder();
+  say("Replaying your recording.");
+}
+export function stopReplay(): void {
+  if (!replaying) return;
+  replaying = false;
+  for (let i = 0; i < KEY_COUNT; i++) {
+    if (replayUntil[i] != 0 && replayFades[i] != 0) release(FIRST + i);
+    replayUntil[i] = 0;
+  }
+  drawRecorder();
+  updateKeys();
+}
+function stepReplay(): bool {
+  replayFrame++;
+  let changed = false, active = false;
+  for (let i = 0; i < KEY_COUNT; i++) {
+    if (replayUntil[i] != 0 && replayUntil[i] <= replayFrame) {
+      if (replayFades[i] != 0) release(FIRST + i);
+      replayUntil[i] = 0; changed = true;
+    }
+  }
+  while (replayCursor < recordNotes.length && recordStarts[replayCursor] <= replayFrame) {
+    const note = recordNotes[replayCursor], start = recordStarts[replayCursor], end = recordEnds[replayCursor];
+    sound(note);
+    replayUntil[note - FIRST] = end > start ? end : start + RECORD_TAP_FRAMES;
+    replayFades[note - FIRST] = end > start ? 1 : 0;
+    replayCursor++; changed = true;
+  }
+  for (let i = 0; i < KEY_COUNT; i++) if (replayUntil[i] != 0) active = true;
+  if (!active && replayCursor == recordNotes.length) stopReplay();
+  return changed;
+}
+function quarters(frames: i32): i32 { return <i32>Math.round(<f64>frames * <f64>recordTempo / 900); }
+function beatText(value: i32): string {
+  const part = value % 4;
+  return (value / 4).toString() + (part == 1 ? ".25" : part == 2 ? ".5" : part == 3 ? ".75" : "");
+}
+function joined(values: i32[], asBeats: bool): string {
+  let result = "";
+  for (let i = 0; i < values.length; i++) {
+    if (i > 0) result += ",";
+    result += asBeats ? beatText(values[i]) : values[i].toString();
+  }
+  return result;
+}
+function diatonic(note: i32): i32 { return (note / 12) * 7 + STAFF_POSITIONS[note % 12]; }
+function buildExport(): string {
+  exportNotes = []; exportFingers = []; exportQuarters = [];
+  const count = recordNotes.length;
+  for (let i = 0; i < count;) {
+    let top = i, next = i + 1;
+    while (next < count && quarters(recordStarts[next] - recordStarts[i]) == 0) {
+      if (recordNotes[next] > recordNotes[top]) top = next;
+      next++;
+    }
+    const span = next < count ? quarters(recordStarts[next] - recordStarts[i])
+      : recordEnds[top] > recordStarts[i] ? quarters(recordEnds[top] - recordStarts[i]) : 4;
+    exportNotes.push(recordNotes[top]);
+    exportQuarters.push(max(1, min(EXPORT_MAX_QUARTERS, span)));
+    i = next;
+  }
+  // A five-finger position that shifts only when a note falls outside it.
+  let anchor = diatonic(exportNotes[0]);
+  for (let i = 1; i < min(5, exportNotes.length); i++) anchor = min(anchor, diatonic(exportNotes[i]));
+  anchor = max(anchor, diatonic(exportNotes[0]) - 4);
+  for (let i = 0; i < exportNotes.length; i++) {
+    const step = diatonic(exportNotes[i]);
+    if (step < anchor) anchor = step;
+    else if (step > anchor + 4) anchor = step - 4;
+    exportFingers.push(step - anchor + 1);
+  }
+  return "new Lesson(\"" + RECORDING_TITLE + "\", \"" + RECORDING_AUTHOR + "\", 1, 1, \"C major\", 4, 4, "
+    + recordTempo.toString() + ",\n    [" + joined(exportNotes, false) + "],\n    [" + joined(exportFingers, false)
+    + "],\n    [" + joined(exportQuarters, true) + "],\n    [], [], \"" + RECORDING_AUTHOR + "\"),";
+}
+export function exportRecording(): void {
+  if (overlay != 0) return;
+  stopRecording();
+  stopReplay();
+  if (recordNotes.length == 0) { say("Record a few notes first, then export them as a lesson."); return; }
+  const entry = buildExport();
+  const path = String.UTF8.encode("recording.lesson"), bytes = String.UTF8.encode(entry);
+  dataSetString(changetype<usize>(path), path.byteLength, changetype<usize>(bytes), bytes.byteLength);
+  let total = 0;
+  for (let i = 0; i < exportQuarters.length; i++) total += exportQuarters[i];
+  text("export-summary", exportNotes.length.toString() + " notes / " + beatText(total) + " beats at "
+    + recordTempo.toString() + " BPM in 4/4 / right-hand lesson entry");
+  const lines = entry.split("\n");
+  let preview = "";
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    preview += (i > 0 ? "\n" : "") + (line.length > EXPORT_PREVIEW_CHARS
+      ? line.substring(0, EXPORT_PREVIEW_CHARS - 3) + "..." : line);
+  }
+  text("export-preview", preview);
+  text("export-status", "Paste it into Custom import, or add it to catalog.ls.ts.");
+  showOverlay(5);
+}
+export function copyRecording(): void {
+  if (overlay == 5) text("export-status", "Copied. Paste it into Custom import or catalog.ls.ts.");
+}
+export function recordingSaved(): void {
+  if (overlay == 5) text("export-status", "Clipboard is unavailable here, so it was saved as swag-recording.txt.");
+}
+export function practiceRecording(): void {
+  if (overlay != 5 || exportNotes.length == 0) return;
+  const beats = new Array<f32>(exportQuarters.length);
+  for (let i = 0; i < exportQuarters.length; i++) beats[i] = <f32>exportQuarters[i] / 4;
+  if (view == 3) setView(0);
+  mode = 0;
+  installCustomLesson(new Lesson(RECORDING_TITLE, RECORDING_AUTHOR, 1, 1, "C major", 4, 4, recordTempo,
+    exportNotes, exportFingers, beats, new Array<i32>(), new Array<i32>(), RECORDING_AUTHOR));
+}
+
 export function main(): void {
   for (let i = 0; i < KEY_COUNT; i++) {
     const prefix = "k" + (FIRST + i).toString() + "/";
@@ -766,11 +1014,19 @@ export function main(): void {
     shown[i] = -99;
   }
   for (let i = 0; i < 32; i++) mini[i] = node("mini" + i.toString());
-  loadLesson(0); setView(0); settings();
+  loadLesson(0); setScroll(PLAIN_SCROLL_MAX / 2); setView(3); settings(); drawRecorder();
 }
 
 export function onFrame(): void {
   clock++;
+  if (!scrollDragging && view == 3 && pointerDown() != 0
+      && pointerX() >= 108 && pointerX() <= 1492 && pointerY() >= 854 && pointerY() <= 900) {
+    scrollDragging = true;
+  }
+  if (scrollDragging) {
+    if (pointerDown() == 0 || view != 3) scrollDragging = false;
+    else setScroll((pointerX() - 108 - PLAIN_THUMB_WIDTH / 2) / PLAIN_THUMB_TRAVEL * PLAIN_SCROLL_MAX);
+  }
   const space = keyDown(32) != 0, escape = keyDown(27) != 0;
   if (escape && !escapeHeld && overlay != 0) closeOverlay();
   if (space && !spaceHeld && overlay == 0) togglePlay();
@@ -784,9 +1040,14 @@ export function onFrame(): void {
       if (pointerNote == note) suppressClick = note;
       press(note); changed = true;
     }
-    if (!down && keyHeld[i] != 0) { release(note); changed = true; }
+    if (!down && keyHeld[i] != 0) {
+      release(note); changed = true;
+      if (recording) recordRelease(note);
+    }
     keyHeld[i] = down ? 1 : 0;
   }
+  if (replaying && stepReplay()) changed = true;
+  if (recording) setAlpha(node("record-pulse"), 0.6 + <f32>Math.sin(<f64>clock * 0.12) * 0.4);
   if (pointerDown() == 0) suppressClick = -1;
   if (feedbackFrames > 0 && --feedbackFrames == 0) hint();
   if (flashFrames > 0 && --flashFrames == 0) changed = true;
@@ -886,6 +1147,10 @@ export function __la_ext_action_pointerPress(_target: u32): void { pointerPress(
 export function __la_ext_action_sheetFlow(_target: u32): void { sheetFlow(); }
 export function __la_ext_action_waterfall(_target: u32): void { waterfall(); }
 export function __la_ext_action_sheetOnly(_target: u32): void { sheetOnly(); }
+export function __la_ext_action_plain(_target: u32): void { plain(); }
+export function __la_ext_action_scrollLeft(_target: u32): void { scrollLeft(); }
+export function __la_ext_action_scrollRight(_target: u32): void { scrollRight(); }
+export function __la_ext_action_scrollToPointer(_target: u32): void { scrollToPointer(); }
 export function __la_ext_action_tempoDown(_target: u32): void { tempoDown(); }
 export function __la_ext_action_tempoUp(_target: u32): void { tempoUp(); }
 export function __la_ext_action_toggleLoop(_target: u32): void { toggleLoop(); }
@@ -920,6 +1185,13 @@ export function __la_ext_action_toggleInstructions(_target: u32): void { toggleI
 export function __la_ext_action_volumeDown(_target: u32): void { volumeDown(); }
 export function __la_ext_action_volumeUp(_target: u32): void { volumeUp(); }
 export function __la_ext_action_cycleInstrument(_target: u32): void { cycleInstrument(); }
+export function __la_ext_action_startRecording(_target: u32): void { startRecording(); }
+export function __la_ext_action_stopRecording(_target: u32): void { stopRecording(); }
+export function __la_ext_action_replayRecording(_target: u32): void { replayRecording(); }
+export function __la_ext_action_stopReplay(_target: u32): void { stopReplay(); }
+export function __la_ext_action_exportRecording(_target: u32): void { exportRecording(); }
+export function __la_ext_action_copyRecording(_target: u32): void { copyRecording(); }
+export function __la_ext_action_practiceRecording(_target: u32): void { practiceRecording(); }
 export function __la_ext_action_note48(_target: u32): void { activate(48); }
 export function __la_ext_action_note49(_target: u32): void { activate(49); }
 export function __la_ext_action_note50(_target: u32): void { activate(50); }
